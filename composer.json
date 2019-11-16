@@ -1,0 +1,36 @@
+{
+  "name": "williambassalobre/teste-madeira-madeira",
+  "description": "Teste para Empresa MadeiraMadeira.",
+  "type": "project",
+  "require": {
+    "php": "^7.2",
+    "php-di/php-di": "^6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "William Bassalobre",
+      "email": "williambassalobre@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "TesteMadeiraMadeira\\": "src/app",
+      "TesteMadeiraMadeira\\Core\\": "src/core",
+      "TesteMadeiraMadeira\\Config\\": "config",
+      "TesteMadeiraMadeira\\Database\\Migrations\\": "database/migrations"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TesteMadeiraMadeira\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
