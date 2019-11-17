@@ -9,11 +9,9 @@ abstract class Repository
 {
 
     protected $dbConnection;
-    protected $model;
 
-    public function __construct(ModelContract $model)
+    public function __construct()
     {
         $this->dbConnection = DBConnection::getInstance();
-        $this->model = $model;
     }
 }
