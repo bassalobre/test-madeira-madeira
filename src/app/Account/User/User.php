@@ -2,7 +2,7 @@
 
 namespace TesteMadeiraMadeira\Account\User;
 
-use TesteMadeiraMadeira\Core\Model\ModelContract;
+use TesteMadeiraMadeira\Core\ModelContract;
 
 class User implements ModelContract
 {

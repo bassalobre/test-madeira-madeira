@@ -2,23 +2,32 @@
 
 namespace TesteMadeiraMadeira\Account\User;
 
-use TesteMadeiraMadeira\Core\Model\ModelContract;
-use TesteMadeiraMadeira\Core\Repository\Repository;
-use TesteMadeiraMadeira\Core\Repository\RepositoryContract;
+use PDO;
+use TesteMadeiraMadeira\Tools\DBConnection\DBConnection;
+use TesteMadeiraMadeira\tools\DBConnection\DBConnectionContract;
+use TesteMadeiraMadeira\Core\ModelContract;
+use TesteMadeiraMadeira\Core\RepositoryContract;
 
-class UserRepository extends Repository implements RepositoryContract
+class UserRepository implements RepositoryContract
 {
-
+    /**
+     * @Inject
+     * @var DBConnection
+     */
+    private $dbConnection;
+    /**
+     * @Inject
+     * @var User
+     */
     private $model;
 
-    public function __construct(ModelContract $model)
+    public function __construct(DBConnectionContract $dbConnection, ModelContract $model)
     {
+        $this->dbConnection = $dbConnection;
         $this->model = $model;
-
-        parent::__construct();
     }
 
-    public function getUserByLogin(string $login)
+    public function getUserByLogin(string $login) :? object
     {
         $sql = '
             SELECT * FROM users
@@ -27,6 +36,7 @@ class UserRepository extends Repository implements RepositoryContract
 
         $statement = $this
             ->dbConnection
+            ->getConnection()
             ->prepare($sql);
 
         $statement->bindParam('login', $login);
@@ -34,7 +44,7 @@ class UserRepository extends Repository implements RepositoryContract
         if ($statement->execute() && $statement->rowCount() > 0) {
             $this
                 ->model
-                ->setModel($statement->fetch(\PDO::FETCH_OBJ));
+                ->setModel($statement->fetch(PDO::FETCH_OBJ));
 
             return $this
                 ->model

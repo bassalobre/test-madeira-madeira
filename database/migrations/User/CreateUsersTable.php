@@ -1,13 +1,14 @@
 <?php
 
-namespace TesteMadeiraMadeira\Database\Migrations;
+namespace TesteMadeiraMadeira\Database\Migrations\User;
 
-use TesteMadeiraMadeira\Config\Migration;
+use TesteMadeiraMadeira\Tools\DBConnection\DBConnectionContract;
+use TesteMadeiraMadeira\Tools\DBExecute\DBExecute;
 
-class CreateUsersTable extends Migration
+class CreateUsersTable extends DBExecute
 {
 
-    public function __construct()
+    public function __construct(DBConnectionContract $dbConnection)
     {
         $sql = '
             CREATE TABLE IF NOT EXISTS users (
@@ -22,6 +23,6 @@ class CreateUsersTable extends Migration
             COLLATE=utf8_general_ci
         ';
 
-        parent::__construct($sql);
+        parent::__construct($dbConnection, $sql);
     }
 }

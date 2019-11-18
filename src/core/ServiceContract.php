@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Core\Service;
+namespace TesteMadeiraMadeira\Core;
 
 interface ServiceContract
 {

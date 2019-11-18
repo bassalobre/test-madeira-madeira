@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Core\Model;
+namespace TesteMadeiraMadeira\Core;
 
 interface ModelContract
 {

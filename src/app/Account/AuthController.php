@@ -2,11 +2,15 @@
 
 namespace TesteMadeiraMadeira\Account;
 
-use TesteMadeiraMadeira\Core\Service\ServiceContract;
+use TesteMadeiraMadeira\Account\User\UserService;
+use TesteMadeiraMadeira\Core\ServiceContract;
 
 class AuthController
 {
-
+    /**
+     * @Inject
+     * @var UserService
+     */
     private $userService;
 
     public function __construct(ServiceContract $userService)
@@ -14,7 +18,7 @@ class AuthController
         $this->userService = $userService;
     }
 
-    public function login(array $data)
+    public function login(array $data) : string
     {
         $validate = $this->validateRequest($data);
 

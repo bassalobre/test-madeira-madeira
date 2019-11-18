@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Config;
+namespace TesteMadeiraMadeira\Tools;
 
 class Env
 {

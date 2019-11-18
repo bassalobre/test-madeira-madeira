@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Core\Repository;
+namespace TesteMadeiraMadeira\Core;
 
 interface RepositoryContract
 {

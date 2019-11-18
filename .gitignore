@@ -1,5 +1,7 @@
 /.idea
+/.build
 /.docker/mysql
 /vendor
+/public/.coverage
 composer.lock
 .env
