@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     protected function getContainer() : Container
     {
         $builder = new ContainerBuilder();
-        $builder->useAnnotations(true);
+        $builder->addDefinitions('config/config.php');
 
         return $builder->build();
     }

@@ -7,10 +7,6 @@ use TesteMadeiraMadeira\Core\ServiceContract;
 
 class UserService implements ServiceContract
 {
-    /**
-     * @Inject
-     * @var UserRepository
-     */
     private $repository;
 
     public function __construct(RepositoryContract $repository)

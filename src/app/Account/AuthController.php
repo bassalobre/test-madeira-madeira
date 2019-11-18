@@ -2,15 +2,10 @@
 
 namespace TesteMadeiraMadeira\Account;
 
-use TesteMadeiraMadeira\Account\User\UserService;
 use TesteMadeiraMadeira\Core\ServiceContract;
 
 class AuthController
 {
-    /**
-     * @Inject
-     * @var UserService
-     */
     private $userService;
 
     public function __construct(ServiceContract $userService)
