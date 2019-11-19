@@ -25,4 +25,15 @@ return [
     'CustomerController' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Customer\CustomerController($container->get('CustomerService'));
     },
+
+    // Product Domain
+    'ProductRepository' => function () {
+        return new \TesteMadeiraMadeira\Product\ProductRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Product\Product());
+    },
+    'ProductService' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\Product\ProductService($container->get('ProductRepository'));
+    },
+    'ProductController' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\Product\ProductController($container->get('ProductService'));
+    },
 ];
