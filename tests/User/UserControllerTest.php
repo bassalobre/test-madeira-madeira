@@ -1,22 +1,24 @@
 <?php
 
-namespace TesteMadeiraMadeira\Tests\Account;
+namespace TesteMadeiraMadeira\Tests\User;
 
-use stdClass;
 use TesteMadeiraMadeira\Tests\TestCase;
+use TesteMadeiraMadeira\User\User;
 
-class AuthControllerTest extends TestCase
+class UserControllerTest extends TestCase
 {
 
     public function testLoginSuccess() : void
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => 'bassalobre', 'password' => 'secret'];
-        $user = new stdClass();
+        $user = new User();
         $user->id = 1;
         $user->name = 'William Bassalobre';
+        unset($user->login);
+        unset($user->password);
 
         $this->assertEquals(
             json_encode(['data' => $user, 'status' => 200]),
@@ -28,7 +30,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => 'souza', 'password' => 'secret'];
 
         $this->assertEquals(
@@ -41,7 +43,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => '', 'password' => 'secret'];
 
         $this->assertEquals(
@@ -54,7 +56,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['password' => 'secret'];
 
         $this->assertEquals(
@@ -67,7 +69,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => 'bassalobre', 'password' => '123456'];
 
         $this->assertEquals(
@@ -80,7 +82,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => 'bassalobre', 'password' => ''];
 
         $this->assertEquals(
@@ -93,7 +95,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = ['login' => 'bassalobre'];
 
         $this->assertEquals(
@@ -106,7 +108,7 @@ class AuthControllerTest extends TestCase
     {
         $controller = $this
             ->getContainer()
-            ->get('AuthController');
+            ->get('UserController');
         $data = [];
 
         $this->assertEquals(

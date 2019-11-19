@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Account\User;
+namespace TesteMadeiraMadeira\User;
 
 use PDO;
 use TesteMadeiraMadeira\tools\DBConnection\DBConnectionContract;

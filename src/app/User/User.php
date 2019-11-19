@@ -1,6 +1,6 @@
 <?php
 
-namespace TesteMadeiraMadeira\Account\User;
+namespace TesteMadeiraMadeira\User;
 
 use TesteMadeiraMadeira\Core\ModelContract;
 

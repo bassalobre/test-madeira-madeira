@@ -1,11 +1,11 @@
 <?php
 
-namespace TesteMadeiraMadeira\Account;
+namespace TesteMadeiraMadeira\User;
 
 use TesteMadeiraMadeira\Core\ServiceContract;
 use TesteMadeiraMadeira\Tools\Log;
 
-class AuthController
+class UserController
 {
     private $userService;
 
@@ -19,7 +19,7 @@ class AuthController
         $validate = $this->validateRequest($data);
 
         if (!$validate['isValid']) {
-            Log::create()->info($validate['message'], $data);
+            Log::create()->info('UserController: ' . $validate['message'], $data);
             return json_encode(['data' => $validate['message'], 'status' => 422]);
         }
 
@@ -28,11 +28,11 @@ class AuthController
             ->login($data);
 
         if (!$login) {
-            Log::create()->info('Credenciais Inválidas.', $data);
+            Log::create()->info('UserController: Credenciais Inválidas.', $data);
             return json_encode(['data' => 'Credenciais Inválidas', 'status' => 401]);
         }
 
-        Log::create()->info('Usuário logado.', ['user' => $login->name]);
+        Log::create()->info('UserController: Usuário logado.', ['id' => $login->id, 'name' => $login->name]);
         return json_encode(['data' => $login, 'status' => 200]);
     }
 
