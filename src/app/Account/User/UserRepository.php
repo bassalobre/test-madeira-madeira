@@ -19,7 +19,7 @@ class UserRepository implements RepositoryContract
         $this->model = $model;
     }
 
-    public function getUserByLogin(string $login) :? object
+    public function getUserByLogin(string $login) :? ModelContract
     {
         $sql = '
             SELECT * FROM users
@@ -38,9 +38,7 @@ class UserRepository implements RepositoryContract
                 ->model
                 ->setModel($statement->fetch(PDO::FETCH_OBJ));
 
-            return $this
-                ->model
-                ->getModel();
+            return $this->model;
         }
 
         return null;

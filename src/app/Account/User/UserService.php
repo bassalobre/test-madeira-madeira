@@ -2,6 +2,7 @@
 
 namespace TesteMadeiraMadeira\Account\User;
 
+use TesteMadeiraMadeira\Core\ModelContract;
 use TesteMadeiraMadeira\Core\RepositoryContract;
 use TesteMadeiraMadeira\Core\ServiceContract;
 
@@ -14,7 +15,7 @@ class UserService implements ServiceContract
         $this->repository = $repository;
     }
 
-    public function login(array $data) :? object
+    public function login(array $data) :? ModelContract
     {
         $user = $this
             ->repository
