@@ -3,6 +3,7 @@
 namespace TesteMadeiraMadeira\Account;
 
 use TesteMadeiraMadeira\Core\ServiceContract;
+use TesteMadeiraMadeira\Tools\Log;
 
 class AuthController
 {
@@ -29,6 +30,7 @@ class AuthController
             return json_encode(['data' => 'Credenciais Inválidas', 'status' => 401]);
         }
 
+        Log::create()->info('User has been logon.', ['user' => $login->name]);
         return json_encode(['data' => $login, 'status' => 200]);
     }
 

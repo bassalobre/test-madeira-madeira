@@ -13,7 +13,7 @@ class UserSeed extends DBExecute
         $password = password_hash('secret', PASSWORD_ARGON2I);
         $sql = "
             INSERT INTO users (id, name, login, password)
-            VALUES (1, 'William Bassalobre', 'bassalobre', '$password');
+            VALUES (1, 'William Bassalobre', 'bassalobre', '{$password}');
         ";
 
         parent::__construct($dbConnection, $sql);

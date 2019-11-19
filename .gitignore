@@ -3,5 +3,6 @@
 /.docker/mysql
 /vendor
 /public/.coverage
+/storage/logs
 composer.lock
 .env

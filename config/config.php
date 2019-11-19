@@ -4,13 +4,14 @@ use Psr\Container\ContainerInterface;
 use TesteMadeiraMadeira\Tools\DBConnection\DBConnection;
 
 return [
+    // User Domain
     'UserRepository' => function () {
         return new \TesteMadeiraMadeira\Account\User\UserRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Account\User\User());
     },
-    'UserService' => function (ContainerInterface  $container) {
+    'UserService' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Account\User\UserService($container->get('UserRepository'));
     },
-    'AuthController' => function (ContainerInterface  $container) {
+    'AuthController' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Account\AuthController($container->get('UserService'));
     },
 ];
