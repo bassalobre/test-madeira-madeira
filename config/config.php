@@ -36,4 +36,19 @@ return [
     'ProductController' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Product\ProductController($container->get('ProductService'));
     },
+
+    // Order Domain
+    'OrderRepository' => function () {
+        return new \TesteMadeiraMadeira\Order\OrderRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Order\Order());
+    },
+    'OrderService' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\Order\OrderService(
+            $container->get('OrderRepository'),
+            $container->get('CustomerService'),
+            $container->get('ProductService')
+        );
+    },
+    'OrderController' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\Order\OrderController($container->get('OrderService'));
+    },
 ];
