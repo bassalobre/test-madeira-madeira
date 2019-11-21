@@ -11,12 +11,10 @@ class CustomerRepository implements RepositoryContract
 {
 
     private $dbConnection;
-    private $model;
 
-    public function __construct(DBConnectionContract $dbConnection, ModelContract $model)
+    public function __construct(DBConnectionContract $dbConnection)
     {
         $this->dbConnection = $dbConnection;
-        $this->model = $model;
     }
 
     public function getAllCustomers() : array
@@ -49,11 +47,10 @@ class CustomerRepository implements RepositoryContract
         $statement->bindParam('id', $id);
 
         if ($statement->execute() && $statement->rowCount() > 0) {
-            $this
-                ->model
-                ->setModel($statement->fetch(PDO::FETCH_OBJ));
+            $model = new Customer();
+            $model->setModel($statement->fetch(PDO::FETCH_OBJ));
 
-            return $this->model;
+            return $model;
         }
 
         return null;
@@ -74,11 +71,10 @@ class CustomerRepository implements RepositoryContract
         $statement->bindParam('email', $email);
 
         if ($statement->execute() && $statement->rowCount() > 0) {
-            $this
-                ->model
-                ->setModel($statement->fetch(PDO::FETCH_OBJ));
+            $model = new Customer();
+            $model->setModel($statement->fetch(PDO::FETCH_OBJ));
 
-            return $this->model;
+            return $model;
         }
 
         return null;

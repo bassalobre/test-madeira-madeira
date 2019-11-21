@@ -6,7 +6,7 @@ use TesteMadeiraMadeira\Tools\DBConnection\DBConnection;
 return [
     // User Domain
     'UserRepository' => function () {
-        return new \TesteMadeiraMadeira\User\UserRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\User\User());
+        return new \TesteMadeiraMadeira\User\UserRepository(DBConnection::getInstance());
     },
     'UserService' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\User\UserService($container->get('UserRepository'));
@@ -17,7 +17,7 @@ return [
 
     // Customer Domain
     'CustomerRepository' => function () {
-        return new \TesteMadeiraMadeira\Customer\CustomerRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Customer\Customer());
+        return new \TesteMadeiraMadeira\Customer\CustomerRepository(DBConnection::getInstance());
     },
     'CustomerService' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Customer\CustomerService($container->get('CustomerRepository'));
@@ -28,7 +28,7 @@ return [
 
     // Product Domain
     'ProductRepository' => function () {
-        return new \TesteMadeiraMadeira\Product\ProductRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Product\Product());
+        return new \TesteMadeiraMadeira\Product\ProductRepository(DBConnection::getInstance());
     },
     'ProductService' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Product\ProductService($container->get('ProductRepository'));
@@ -39,7 +39,7 @@ return [
 
     // Order Domain
     'OrderRepository' => function () {
-        return new \TesteMadeiraMadeira\Order\OrderRepository(DBConnection::getInstance(), new \TesteMadeiraMadeira\Order\Order());
+        return new \TesteMadeiraMadeira\Order\OrderRepository(DBConnection::getInstance());
     },
     'OrderService' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Order\OrderService(

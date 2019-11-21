@@ -11,12 +11,10 @@ class OrderRepository implements RepositoryContract
 {
 
     private $dbConnection;
-    private $model;
 
-    public function __construct(DBConnectionContract $dbConnection, ModelContract $model)
+    public function __construct(DBConnectionContract $dbConnection)
     {
         $this->dbConnection = $dbConnection;
-        $this->model = $model;
     }
 
     public function getAllOrders() : array
@@ -47,14 +45,10 @@ class OrderRepository implements RepositoryContract
             ->dbConnection
             ->getConnection()
             ->prepare($sql);
-
         $statement->bindParam('order_id', $orderId);
+        $statement->execute();
 
-        if ($statement->execute() && $statement->rowCount() > 0) {
-            return $statement->fetchAll(PDO::FETCH_OBJ);
-        }
-
-        return [];
+        return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getOrderById(int $id) :? ModelContract
@@ -72,11 +66,10 @@ class OrderRepository implements RepositoryContract
         $statement->bindParam('id', $id);
 
         if ($statement->execute() && $statement->rowCount() > 0) {
-            $this
-                ->model
-                ->setModel($statement->fetch(PDO::FETCH_OBJ));
+            $model = new Order();
+            $model->setModel($statement->fetch(PDO::FETCH_OBJ));
 
-            return $this->model;
+            return $model;
         }
 
         return null;

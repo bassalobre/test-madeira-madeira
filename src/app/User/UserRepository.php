@@ -11,12 +11,10 @@ class UserRepository implements RepositoryContract
 {
 
     private $dbConnection;
-    private $model;
 
-    public function __construct(DBConnectionContract $dbConnection, ModelContract $model)
+    public function __construct(DBConnectionContract $dbConnection)
     {
         $this->dbConnection = $dbConnection;
-        $this->model = $model;
     }
 
     public function getUserByLogin(string $login) :? ModelContract
@@ -34,11 +32,10 @@ class UserRepository implements RepositoryContract
         $statement->bindParam('login', $login);
 
         if ($statement->execute() && $statement->rowCount() > 0) {
-            $this
-                ->model
-                ->setModel($statement->fetch(PDO::FETCH_OBJ));
+            $model = new User();
+            $model->setModel($statement->fetch(PDO::FETCH_OBJ));
 
-            return $this->model;
+            return $model;
         }
 
         return null;
