@@ -51,4 +51,15 @@ return [
     'OrderController' => function (ContainerInterface $container) {
         return new \TesteMadeiraMadeira\Order\OrderController($container->get('OrderService'));
     },
+
+    // Topic Domain
+    'TopicRepository' => function () {
+        return new \TesteMadeiraMadeira\KnowledgeBase\Topic\TopicRepository(DBConnection::getInstance());
+    },
+    'TopicService' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\KnowledgeBase\Topic\TopicService($container->get('TopicRepository'));
+    },
+    'TopicController' => function (ContainerInterface $container) {
+        return new \TesteMadeiraMadeira\KnowledgeBase\Topic\TopicController($container->get('TopicService'));
+    },
 ];

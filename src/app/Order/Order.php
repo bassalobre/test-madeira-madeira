@@ -22,7 +22,7 @@ class Order implements ModelContract
         $this->id = (int) $object->id;
         $this->customer_id = (int) $object->customer_id;
         $this->price = (float) $object->price;
-        $this->created_at = (string) $object->created_at;
+        $this->created_at = date($object->created_at);
     }
 
     public function setCustomer(Customer $customer) : void
